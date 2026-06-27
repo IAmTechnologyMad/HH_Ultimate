@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: firstcry-hotwheels-bot
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: singapore
+    branch: main
+
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
+      - key: POLL_INTERVAL_SECONDS
+        value: "30"
+      - key: REQUEST_TIMEOUT_SECONDS
+        value: "10"
+      - key: MAX_RETRIES
+        value: "3"
+      - key: RETRY_DELAY_MS
+        value: "500"
+      - key: DB_PATH
+        value: "/var/data/products.db"
+      - key: PORT
+        value: "8080"
+      - key: FIRSTCRY_URL
+        value: "https://www.firstcry.com/hotwheels/5/0/113?sort=popularity&q=ard-hot%20wheels&ref2=q_ard_hot%20wheels&asid=53241"
+
+    healthCheckPath: /health
+
